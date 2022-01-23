@@ -1,6 +1,6 @@
-const { DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const connection = require("../config/db")
-
+const usermodel = require('../model/user.model')
 
 const Transaction = connection.define(
     "transaction",
@@ -24,12 +24,15 @@ const Transaction = connection.define(
         receiver:{
             type: DataTypes.INTEGER,
             allowNull: false,
-        }
+        },
+        createdAt: Sequelize.DATE
     },
     {
         freezeTableName: true,
-        timestamps: false
+        
     }
 );
+Transaction.belongsTo(usermodel, { as: "senderUsers", foreignKey: "sender" });
+Transaction.belongsTo(usermodel, { as: "receiverUsers", foreignKey: "receiver" });
 
 module.exports = Transaction
