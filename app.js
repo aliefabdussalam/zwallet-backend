@@ -15,8 +15,9 @@ app.use('/upload', express.static(`${__dirname}/upload`));
 app.use(bodyParser.json())
 app.use(registerRoute)
 app.use(orderRoute)
-app.listen(8080, () => {
-    console.log('connect to 8080')
+const PORT = 8080
+app.listen(process.env.PORT | PORT, () => {
+    console.log(`connect to ${PORT}`)
 })
 
 module.exports = app
