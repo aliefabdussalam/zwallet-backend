@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 app.use(registerRoute)
 app.use(orderRoute)
 const PORT = 8080
-app.listen(process.env.PORT | PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
     console.log(`connect to ${PORT}`)
 })
 
